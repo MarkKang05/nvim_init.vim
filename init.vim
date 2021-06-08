@@ -17,6 +17,7 @@ set wmnu    " tab 을 눌렀을 때 자동완성 가능한 목록
 set mouse=a    " 커서 이동을 마우스로 가능하도록
 set autoindent
 set clipboard=unnamed
+set pumheight=7
 set cindent
 filetype indent on    " 파일 종류에 따른 구문 강조
 if has("syntax")
@@ -26,7 +27,6 @@ endif
 "set plugin
 call plug#begin('~/.vim/plugged')
 
-Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'edkolev/promptline.vim'
@@ -35,25 +35,40 @@ Plug 'frazrepo/vim-rainbow'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug '907th/vim-auto-save'
+Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tomasiser/vim-code-dark'
+
 
 call plug#end()
 
 "set color scheme
-colorscheme jellybeans
+"colorscheme jellybeans "curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
 "colorscheme desert
+set cursorline
+"colorscheme onehalfdark
+"let g:airline_theme='onehalfdark'
+colorscheme codedark
+let g:airline_theme = 'codedark'
 
 "set delimitmate- auto pair
 let delimitMate_expand_cr=1
-
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 map <F2> :w!<CR>
-map <F9> :! g++ % -o %<CR> && ./%<
+"map <F9> :! g++ -o % %<CR> && ./%<CR>
+map <F9> :!g++ -o  %:r.out % && ./%:r.out<CR> 
 map <F10> :! ./%<<CR>
+map <C-J> :bprev<CR>
+map <C-K> :bnext<CR>
 
 "save option
 nmap <C-S> :w<CR>
 imap <C-S> <ESC>:w<CR>a
-
+nnoremap <C-p> :Files<Cr>
 let g:auto_save = 1
 let g:auto_save_silent = 1
 
@@ -67,7 +82,8 @@ let g:rainbow_load_separately = [
     \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
     \ ]
 let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
-let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
+"let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
+let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'magenta']
 
 "vim indent guide
 let g:indent_guides_enable_on_vim_startup=1
