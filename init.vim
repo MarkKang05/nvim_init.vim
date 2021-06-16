@@ -18,6 +18,7 @@ set mouse=a    " 커서 이동을 마우스로 가능하도록
 set autoindent
 set clipboard=unnamed
 set pumheight=7
+let g:airline_theme = 'codedark'
 set cindent
 filetype indent on    " 파일 종류에 따른 구문 강조
 if has("syntax")
@@ -40,7 +41,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tomasiser/vim-code-dark'
-
+Plug 'nono/vim-handlebars'
 
 call plug#end()
 
